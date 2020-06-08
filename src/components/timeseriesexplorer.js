@@ -1,5 +1,3 @@
-import TimeSeries from './timeseries';
-
 import {
   STATE_NAMES,
   TIMESERIES_CHART_TYPES,
@@ -13,10 +11,14 @@ import {PinIcon, IssueOpenedIcon} from '@primer/octicons-v2-react';
 import classnames from 'classnames';
 import {formatISO, sub} from 'date-fns';
 import equal from 'fast-deep-equal';
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useMemo, useRef, useState, lazy} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useIsVisible} from 'react-is-visible';
 import {useLocalStorage} from 'react-use';
+
+const TimeSeries = lazy(() =>
+  import('./timeseries' /* webpackChunkName: "TimeSeries" */)
+);
 
 function TimeSeriesExplorer({
   timeseries,

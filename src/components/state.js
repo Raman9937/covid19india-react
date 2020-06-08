@@ -1,11 +1,9 @@
 import DeltaBarGraph from './deltabargraph';
 import Footer from './footer';
 import Level from './level';
-import MapExplorer from './mapexplorer';
 import Minigraph from './minigraph';
 import StateDropdown from './statedropdown';
 import StateMeta from './statemeta';
-import TimeSeriesExplorer from './timeseriesexplorer';
 
 import {NUM_BARS_STATEPAGE, STATE_NAMES} from '../constants';
 import {
@@ -16,13 +14,21 @@ import {
 } from '../utils/commonfunctions';
 
 import anime from 'animejs';
-import React, {useState, useMemo} from 'react';
+import React, {useState, useMemo, lazy} from 'react';
 import * as Icon from 'react-feather';
 import {Helmet} from 'react-helmet';
 import {useTranslation} from 'react-i18next';
 import {useParams} from 'react-router-dom';
 import {useMeasure, useEffectOnce} from 'react-use';
 import useSWR from 'swr';
+
+const TimeSeriesExplorer = lazy(() =>
+  import('./timeseriesexplorer' /* webpackChunkName: "TimeSeriesExplorer" */)
+);
+
+const MapExplorer = lazy(() =>
+  import('./mapexplorer' /* webpackChunkName: "MapExplorer" */)
+);
 
 function State(props) {
   const {t} = useTranslation();
